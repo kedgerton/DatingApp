@@ -1,18 +1,18 @@
 using API.Data;
 using API.Entities;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")] // https://localhost:5001/api/members
-    [ApiController]
+    // [Route("api/[controller]")] // https://localhost:5001/api/members
+    // [ApiController]
     // AppDbContext context will create a DB session from the Program.cs builder
     // This is because AppDbContext is registered
-    public class MembersController(AppDbContext context) : ControllerBase
+    public class MembersController(AppDbContext context) : BaseApiController
     {
-        [HttpGet]
+        [HttpGet] // https://localhost:5001/api/members
         // ActionResult will return a http response like 200 or 404 ect
         // ActionResult List is what is the type of data the will be returned
         // Appuser will be what is returned
@@ -29,7 +29,7 @@ namespace API.Controllers
 
             return members;
         }
-
+        [Authorize]
         [HttpGet("{id}")] // https://localhost:5001/api/members/bob-id
         public async Task<ActionResult<AppUser>> GetMember(string id)
         {

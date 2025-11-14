@@ -33,6 +33,9 @@
     - -o `LOCATION`
   - Run the migration
     - dotnet ef database update
+- ##### Update a new migration
+  - ```dotnet ef migrations add `NAMEOFMIGRATION` ```
+  - ```dotnet ef database update```
 #### Controlers
 - Create a new file and choose API Controller
   - New the file `NAMECONTROLER`
@@ -73,3 +76,6 @@
             "sslKey": "./ssl/localhost-key.pem"
           },
   ```
+
+## Storing Passwords
+- 
